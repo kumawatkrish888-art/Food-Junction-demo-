@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Helly and Chilly Cafe | Mehsana's Best Food Junction</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+    <style>
+        /* --- CSS VARIABLES & RESET --- */
+        :root {
+            --spicy-red: #FF4500;
+            --spicy-orange: #FF8C00;
+            --chilly-cyan: #00CED1;
+            --chilly-teal: #20B2AA;
+            --dark-text: #333;
+            --light-text: #fff;
+            --bg-light: #f9f9f9;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka One', cursive;
+            letter-spacing: 1px;
+        }
+
+        a { text-decoration: none; }
+        ul { list-style: none; }
+
+        /* --- NAVIGATION --- */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            background: rgba(255, 255, 255, 0.95);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            background: linear-gradient(to right, var(--spicy-red), var(--chilly-cyan));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: var(--dark-text);
+            font-weight: 600;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--spicy-red);
+        }
+
+        .cta-btn {
+            background: linear-gradient(45deg, var(--spicy-red), var(--spicy-orange));
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-weight: bold;
+            transition: transform 0.3s;
+        }
+
+        .cta-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            height: 90vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1550547660-d9450f859349?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: white;
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            max-width: 600px;
+        }
+
+        .hero-btn {
+            background: var(--chilly-cyan);
+            color: white;
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 206, 209, 0.4);
+        }
+
+        /* --- SPECIALTIES GRID --- */
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin: 60px 0 40px;
+            color: var(--spicy-red);
+        }
+
+        .specialties {
+            padding: 20px 5%;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            text-align: center;
+            padding-bottom: 20px;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card-img {
+            height: 200px;
+            background-color: #ddd;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .card h3 {
+            margin: 15px 0 10px;
+            color: var(--chilly-teal);
+        }
+
+        .card p {
+            padding: 0 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        /* --- GALLERY --- */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 10px;
+            padding: 0 5%;
+        }
+
+        .gallery-item {
+            height: 250px;
+            background-color: #eee;
+            border-radius: 10px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        /* --- MENU SECTION --- */
+        .menu-section {
+            background: var(--bg-light);
+            padding: 50px 5%;
+        }
+
+        .menu-category {
+            margin-bottom: 40px;
+        }
+
+        .menu-category h3 {
+            font-size: 1.8rem;
+            color: var(--spicy-red);
+            border-bottom: 2px solid var(--chilly-cyan);
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .menu-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+
+        .item-details h4 {
+            font-size: 1.1rem;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+        }
+
+        .item-details p {
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        .price {
+            font-weight: bold;
+            color: var(--chilly-teal);
+            font-size: 1.1rem;
+        }
+
+        .badge {
+            background: var(--spicy-red);
+            color: white;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-size: 0.7rem;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+
+        /* --- CONTACT & FOOTER --- */
+        .contact-section {
+            padding: 50px 5%;
+            text-align: center;
+        }
+
+        .map-container {
+            width: 100%;
+            height: 400px;
+            margin: 30px 0;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 40px 5%;
+            text-align: center;
+        }
+
+        .social-icons {
+            margin: 20px 0;
+        }
+
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: var(--chilly-cyan);
+        }
+
+        .seo-text {
+            font-size: 0.8rem;
+            color: #888;
+            margin-top: 20px;
+        }
+
+        /* --- FLOATING WHATSAPP --- */
+        .whatsapp-float {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25d366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+
+        .whatsapp-float:hover {
+            background-color: #128C7E;
+            transform: scale(1.1);
+        }
+
+        /* --- MOBILE RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .nav-links { display: none; } /* Simplified for demo, usually needs a hamburger menu */
+            .logo { font-size: 1.2rem; }
+            .whatsapp-float { width: 50px; height: 50px; font-size: 25px; bottom: 20px; right: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="logo">HELLY & CHILLY</div>
+        <div class="nav-links">
+            <a href="#specialties">Specialties</a>
+            <a href="#menu">Menu</a>
+            <a href="#gallery">Gallery</a>
+            <a href="#contact">Contact</a>
+        </div>
+        <a href="https://wa.me/919999999999" class="cta-btn">Order Now</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Mehsana's Most Happening Food Junction!</h1>
+        <p>Delicious Slices, Spicy Bites, and the Coolest Sips in Town.</p>
+        <a href="#menu" class="hero-btn">View Menu</a>
+    </section>
+
+    <!-- Specialties Grid -->
+    <h2 class="section-title">Our Specialties</h2>
+    <section class="specialties" id="specialties">
+        <!-- Card 1 -->
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1528735602780-2552fd46c7af?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Signature Sandwiches</h3>
+            <p>Grill, Club, and our famous Cheese Overload Sandwich.</p>
+        </div>
+        <!-- Card 2 -->
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1574071318508-1cdbab80d002?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Italian Corner</h3>
+            <p>Thin-crust Pizzas and creamy Pasta dishes.</p>
+        </div>
+        <!-- Card 3 -->
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Chilly Coolers</h3>
+            <p>Mocktails, Thick Shakes, and Cold Coffee.</p>
+        </div>
+        <!-- Card 4 -->
+        <div class="card">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1568901346375-23c9450c58cd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80');"></div>
+            <h3>Quick Bites</h3>
+            <p>Juicy Burgers, Crispy Fries, and Garlic Bread.</p>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <h2 class="section-title" id="gallery">The Mehsana Vibe</h2>
+    <section class="gallery-grid">
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1554118811-1e0d58224f24?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Cafe Interior"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Happy Customers"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1563379926898-05f4575a45d8?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Food Plating"></div>
+        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Coffee Art"></div>
+    </section>
+
+    <!-- Smart Menu -->
+    <section class="menu-section" id="menu">
+        <h2 class="section-title">Smart Menu</h2>
+        
+        <div class="menu-category">
+            <h3>🔥 Helly (Spicy) Bites</h3>
+            <div class="menu-item">
+                <div class="item-details">
+                    <h4>Cheese Overload Sandwich <span class="badge">Chef's Special</span></h4>
+                    <p>Double cheese, spicy mayo, grilled to perfection.</p>
+                </div>
+                <div class="price">₹120</div>
+            </div>
+            <div class="menu-item">
+                <div class="item-details">
+                    <h4>Spicy Chicken Burger</h4>
+                    <p>Grilled chicken p
